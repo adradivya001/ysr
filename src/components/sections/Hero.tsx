@@ -26,12 +26,13 @@ const itemVariants = {
 };
 
 const specialties = [
-  'General Medicine', 'Cardiology', 'Neurosurgery',
-  'Orthopaedics', 'Paediatrics', 'Gynaecology',
+  'Joint Replacement & Orthopaedics',
+  'General Medicine & Diabetology',
+  'Obstetrics & Gynaecology (FMAS)',
 ];
 
 const highlights = [
-  { icon: Stethoscope, text: '13+ Specialities' },
+  { icon: Stethoscope, text: '3 Core Specialities' },
   { icon: Clock,       text: '24/7 Emergency' },
   { icon: ShieldCheck, text: 'Patient-First Care' },
 ];
@@ -352,7 +353,7 @@ export function Hero() {
             overflow: 'hidden',
           }}>
             {/* Hospital photo */}
-            <div style={{ position: 'relative', height: 340, overflow: 'hidden' }}>
+            <div style={{ position: 'relative', height: 350, overflow: 'hidden' }}>
               <img
                 src={heroImg}
                 alt="Dr. YSR Memorial Hospital building"
@@ -361,7 +362,7 @@ export function Hero() {
               {/* Subtle overlay */}
               <div style={{
                 position: 'absolute', inset: 0,
-                background: 'linear-gradient(180deg, rgba(10,22,40,0.08) 0%, rgba(10,22,40,0.05) 55%, rgba(10,22,40,0.62) 100%)',
+                background: 'linear-gradient(180deg, rgba(10,22,40,0.08) 0%, rgba(10,22,40,0.05) 55%, rgba(10,22,40,0.55) 100%)',
               }} />
 
               {/* Top-left: Location pill */}
@@ -404,14 +405,94 @@ export function Hero() {
               {/* Bottom caption */}
               <div style={{
                 position: 'absolute', bottom: 0, left: 0, right: 0,
-                padding: '28px 20px 16px',
-                background: 'linear-gradient(0deg, rgba(10,22,40,0.88) 0%, transparent 100%)',
+                padding: '24px 20px 14px',
+                background: 'linear-gradient(0deg, rgba(10,22,40,0.85) 0%, transparent 100%)',
               }}>
-                <div style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: '1.15rem', fontWeight: 700, color: '#fff', marginBottom: 3 }}>
+                <div style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: '1.15rem', fontWeight: 700, color: '#fff', marginBottom: 2 }}>
                   Dr. YSR Memorial Hospital
                 </div>
-                <div style={{ fontSize: '0.79rem', color: 'rgba(255,255,255,0.75)' }}>
+                <div style={{ fontSize: '0.79rem', color: 'rgba(255,255,255,0.78)' }}>
                   Comprehensive Healthcare · Advanced Diagnostics
+                </div>
+              </div>
+            </div>
+
+            {/* ── ACTIVE ICU & SURGERY ECG LIVE BAR (Matching Design) ── */}
+            <div
+              style={{
+                background: '#0B1528',
+                padding: '14px 20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: 16,
+                borderTop: '1px solid rgba(255,255,255,0.08)',
+              }}
+            >
+              {/* Left: Heart Icon in Rounded Square + ECG Pulse Wave */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, flex: 1, minWidth: 0 }}>
+                <div
+                  style={{
+                    width: 38,
+                    height: 38,
+                    borderRadius: 10,
+                    background: 'rgba(244, 63, 94, 0.12)',
+                    border: '1.5px solid rgba(244, 63, 94, 0.35)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#F43F5E',
+                    flexShrink: 0,
+                  }}
+                >
+                  <HeartPulse size={20} />
+                </div>
+
+                {/* Animated ECG Pulse Wave */}
+                <div style={{ width: 110, height: 28, overflow: 'visible', flexShrink: 0 }}>
+                  <svg
+                    width="110"
+                    height="28"
+                    viewBox="0 0 110 28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <motion.path
+                      d="M0 14H30L36 14L42 3L50 25L58 7L64 20L70 14L110 14"
+                      stroke="#F43F5E"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      initial={{ pathLength: 0.3, opacity: 0.8 }}
+                      animate={{ pathLength: [0.3, 1, 0.3], opacity: [0.7, 1, 0.7] }}
+                      transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Right: Active Status & BPM Subtitle */}
+              <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}>
+                  <motion.span
+                    animate={{ scale: [1, 1.35, 1], opacity: [1, 0.65, 1] }}
+                    transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+                    style={{
+                      width: 8,
+                      height: 8,
+                      borderRadius: '50%',
+                      background: '#10B981',
+                      boxShadow: '0 0 10px rgba(16, 185, 129, 0.75)',
+                      display: 'inline-block',
+                      flexShrink: 0,
+                    }}
+                  />
+                  <span style={{ fontSize: '0.92rem', fontWeight: 750, color: '#FFFFFF', letterSpacing: '-0.01em' }}>
+                    Active ICU & Surgery
+                  </span>
+                </div>
+                <div style={{ fontSize: '0.74rem', color: '#94A3B8', marginTop: 2, fontWeight: 500 }}>
+                  72 BPM · 24/7 Operations
                 </div>
               </div>
             </div>
@@ -423,7 +504,7 @@ export function Hero() {
               borderTop: '1px solid #F1F5F9',
             }}>
               {[
-                { val: '13+', lbl: 'Specialities', color: '#C0183E' },
+                { val: '3', lbl: 'Key Specialities', color: '#C0183E' },
                 { val: '24/7', lbl: 'Emergency', color: '#1C3A6E' },
                 { val: '5K+', lbl: 'Patients Served', color: '#059669' },
               ].map(({ val, lbl, color }, i) => (
@@ -452,38 +533,6 @@ export function Hero() {
             </div>
           </div>
 
-          {/* ── Emergency helpline chip — bottom right, outside card ──── */}
-          <motion.a
-            href={`tel:${siteConfig.phone}`}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1, duration: 0.5, ease: EASE }}
-            style={{
-              position: 'absolute', bottom: -22, right: 20, zIndex: 10,
-              display: 'flex', alignItems: 'center', gap: 10,
-              padding: '12px 18px', borderRadius: 16,
-              background: 'linear-gradient(135deg, #C0183E, #9F1239)',
-              boxShadow: '0 10px 30px rgba(192,24,62,0.36)',
-              border: '2px solid rgba(255,255,255,0.22)',
-              textDecoration: 'none',
-            }}
-          >
-            <div style={{
-              width: 32, height: 32, borderRadius: '50%',
-              background: 'rgba(255,255,255,0.20)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-            }}>
-              <Phone size={14} color="#fff" />
-            </div>
-            <div>
-              <div style={{ fontSize: '0.64rem', color: 'rgba(255,255,255,0.72)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                Emergency
-              </div>
-              <div style={{ fontSize: '1rem', fontWeight: 800, color: '#fff' }}>
-                {siteConfig.phoneDisplay}
-              </div>
-            </div>
-          </motion.a>
         </motion.div>
       </div>
 

@@ -20,44 +20,17 @@ export function Doctors() {
   const reducedMotion = useReducedMotion();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const leadershipDoctor = doctors.find((d) => d.isLeadership);
-  const specialistDoctors = doctors.filter((d) => !d.isLeadership);
-
   // Department filter categories
   const departments = [
-    { id: 'all', label: 'All Doctors', count: specialistDoctors.length },
-    { id: 'general-medicine', label: 'General Medicine', count: 2 },
-    { id: 'obstetrics-gynaecology', label: 'Obst & Gynaecology', count: 2 },
-    { id: 'cardiology', label: 'Cardiology', count: 1 },
-    { id: 'pulmonology', label: 'Pulmonology (Lungs)', count: 2 },
-    { id: 'gastroenterology', label: 'Gastroenterology', count: 2 },
-    { id: 'general-surgery', label: 'General Surgery', count: 1 },
-    { id: 'orthopaedics', label: 'Ortho & Joints', count: 2 },
-    { id: 'paediatric-surgery', label: 'Paediatric Surgery', count: 1 },
-    { id: 'maxillofacial-surgery', label: 'Maxillofacial', count: 2 },
-    { id: 'ent', label: 'ENT', count: 2 },
-    { id: 'neurology', label: 'Neurology', count: 2 },
-    { id: 'plastic-surgery', label: 'Plastic Surgery', count: 1 },
-    { id: 'anaesthesia-icu', label: 'Anaesthesia & ICU', count: 2 },
-    { id: 'urology', label: 'Urology', count: 2 },
-    { id: 'neurosurgery', label: 'Neurosurgery', count: 1 },
+    { id: 'all', label: 'All Doctors', count: doctors.length },
+    { id: 'orthopaedics', label: 'Orthopaedics & Joint Replacement', count: doctors.filter(d => d.specialitySlug === 'orthopaedics').length },
+    { id: 'general-medicine', label: 'General Medicine & Diabetology', count: doctors.filter(d => d.specialitySlug === 'general-medicine').length },
+    { id: 'obstetrics-gynaecology', label: 'Obstetrics & Gynaecology', count: doctors.filter(d => d.specialitySlug === 'obstetrics-gynaecology').length },
   ];
 
   const filteredDoctors = selectedDept === 'all'
-    ? specialistDoctors
-    : specialistDoctors.filter((d) => d.specialitySlug === selectedDept);
-
-  // Double the list for seamless infinite marquee loop when 3+ doctors
-  const displayDoctors = filteredDoctors.length >= 3
-    ? [...filteredDoctors, ...filteredDoctors]
-    : filteredDoctors;
-
-  const handleManualScroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const offset = direction === 'left' ? -360 : 360;
-      scrollContainerRef.current.scrollBy({ left: offset, behavior: 'smooth' });
-    }
-  };
+    ? doctors
+    : doctors.filter((d) => d.specialitySlug === selectedDept);
 
   return (
     <section
@@ -67,9 +40,8 @@ export function Doctors() {
       aria-labelledby="doctors-heading"
       style={{
         padding: 'clamp(3.5rem, 6vw, 6rem) 0',
-        background: '#ECFEFF',
-        borderBottom: '1px solid #CFFAFE',
-        overflow: 'hidden',
+        background: '#FFF8F9',
+        borderBottom: '1px solid #FCE7EC',
         position: 'relative',
       }}
     >
@@ -80,133 +52,48 @@ export function Doctors() {
           initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, ease: EASE }}
-          style={{ textAlign: 'center', marginBottom: 'clamp(2rem, 4vw, 3rem)' }}
+          style={{ textAlign: 'center', marginBottom: 'clamp(2rem, 4vw, 2.75rem)' }}
         >
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: '6px',
             padding: '5px 14px', borderRadius: '100px', background: '#FFFFFF',
-            border: '1px solid #BAE6FD', color: '#0E7490', fontSize: '0.78rem',
+            border: '1px solid #F5C2CE', color: '#C0183E', fontSize: '0.78rem',
             fontWeight: 750, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '0.75rem',
-            boxShadow: '0 2px 6px rgba(14, 116, 144, 0.06)'
+            boxShadow: '0 2px 6px rgba(192, 24, 62, 0.08)'
           }}>
-            <ShieldCheck size={14} color="#0E7490" /> 20+ SPECIALIST DOCTORS
+            <ShieldCheck size={14} color="#C0183E" /> EXPERT SENIOR CONSULTANTS
           </div>
 
           <h2 id="doctors-heading" style={{
-            fontFamily: 'Inter, system-ui, sans-serif',
-            fontSize: 'clamp(2.2rem, 3.8vw, 3.2rem)', fontWeight: 850,
-            lineHeight: 1.15, letterSpacing: '-0.025em', color: '#0F172A',
+            fontFamily: 'Fraunces, Georgia, serif',
+            fontSize: 'clamp(2.2rem, 3.8vw, 3.2rem)', fontWeight: 800,
+            lineHeight: 1.15, letterSpacing: '-0.02em', color: '#0F172A',
             maxWidth: 720, margin: '0 auto',
           }}>
             Meet Our{' '}
             <span style={{
-              background: 'linear-gradient(135deg, #0E7490 0%, #0284C7 100%)',
+              background: 'linear-gradient(135deg, #C0183E 0%, #96122F 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
             }}>
-              Doctors
+              Doctors & Surgeons
             </span>
           </h2>
           <p style={{
             fontSize: '1.025rem', color: '#64748B', marginTop: '12px',
             maxWidth: 680, margin: '12px auto 0', lineHeight: 1.6
           }}>
-            Experienced specialist doctors and surgeons providing trusted medical care across 15 hospital departments.
+            Dedicated senior consultants, joint replacement specialists, physicians, and surgeons offering trusted care at Dr. YSR Memorial Hospital.
           </p>
         </motion.div>
 
-        {/* ── DEPARTMENT FILTER PILLS & MOVING STATUS BAR ─────────── */}
-        <div style={{ marginBottom: '1.5rem' }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            marginBottom: '14px',
-            flexWrap: 'wrap',
-            gap: '12px',
-          }}>
-            <div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0F172A', margin: '0 0 2px 0' }}>
-                Specialist Doctors Roster ({filteredDoctors.length})
-              </h3>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem', color: '#0E7490', fontWeight: 650 }}>
-                <span className="live-flow-dot" />
-                <span>Continuous Flow Active · <strong>Hover mouse or touch to pause</strong></span>
-              </div>
-            </div>
-
-            {/* Controls: Left / Right Scroll & Pause Toggle */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <button
-                onClick={() => setIsPausedByUser(!isPausedByUser)}
-                title={isPausedByUser ? 'Resume moving' : 'Pause moving'}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  padding: '7px 14px',
-                  borderRadius: '100px',
-                  background: isPausedByUser ? '#0E7490' : '#FFFFFF',
-                  color: isPausedByUser ? '#FFFFFF' : '#0E7490',
-                  border: '1px solid #BAE6FD',
-                  fontSize: '0.78rem',
-                  fontWeight: 750,
-                  cursor: 'pointer',
-                  boxShadow: '0 2px 8px rgba(14, 116, 144, 0.08)',
-                }}
-              >
-                {isPausedByUser ? <Play size={13} fill="currentColor" /> : <Pause size={13} fill="currentColor" />}
-                <span>{isPausedByUser ? 'Resume Flow' : 'Pause Flow'}</span>
-              </button>
-
-              <button
-                onClick={() => handleManualScroll('left')}
-                aria-label="Scroll left"
-                style={{
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '50%',
-                  background: '#FFFFFF',
-                  border: '1px solid #BAE6FD',
-                  color: '#0E7490',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  boxShadow: '0 2px 8px rgba(14, 116, 144, 0.08)',
-                }}
-              >
-                <ChevronLeft size={18} />
-              </button>
-              <button
-                onClick={() => handleManualScroll('right')}
-                aria-label="Scroll right"
-                style={{
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '50%',
-                  background: '#FFFFFF',
-                  border: '1px solid #BAE6FD',
-                  color: '#0E7490',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  boxShadow: '0 2px 8px rgba(14, 116, 144, 0.08)',
-                }}
-              >
-                <ChevronRight size={18} />
-              </button>
-            </div>
-          </div>
-
-          {/* Filter Pills */}
+        {/* ── DEPARTMENT FILTER PILLS ─────────── */}
+        <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'center' }}>
           <div style={{
             display: 'flex',
             gap: '8px',
-            overflowX: 'auto',
-            paddingBottom: '8px',
-            scrollbarWidth: 'none',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
           }}>
             {departments.map((dept) => {
               const active = selectedDept === dept.id;
@@ -215,16 +102,16 @@ export function Doctors() {
                   key={dept.id}
                   onClick={() => setSelectedDept(dept.id)}
                   style={{
-                    padding: '7px 14px',
+                    padding: '8px 18px',
                     borderRadius: '100px',
-                    fontSize: '0.8125rem',
+                    fontSize: '0.85rem',
                     fontWeight: active ? 750 : 600,
                     color: active ? '#FFFFFF' : '#334155',
-                    background: active ? '#0E7490' : '#FFFFFF',
-                    border: active ? '1px solid #0E7490' : '1px solid #E2E8F0',
+                    background: active ? '#C0183E' : '#FFFFFF',
+                    border: active ? '1px solid #C0183E' : '1px solid #E2E8F0',
                     cursor: 'pointer',
                     whiteSpace: 'nowrap',
-                    boxShadow: active ? '0 4px 12px rgba(14, 116, 144, 0.2)' : '0 1px 3px rgba(0,0,0,0.02)',
+                    boxShadow: active ? '0 4px 12px rgba(192, 24, 62, 0.25)' : '0 1px 3px rgba(0,0,0,0.02)',
                     transition: 'all 160ms ease',
                   }}
                 >
@@ -235,50 +122,78 @@ export function Doctors() {
           </div>
         </div>
 
-      </div>
-
-      {/* ── 3. CONTINUOUS MOVING MARQUEE STRIP (PAUSES ON CURSOR HOVER) ─────────── */}
-      <div
-        className={`doctor-marquee-wrapper ${isPausedByUser ? 'force-paused' : ''}`}
-        ref={scrollContainerRef}
-      >
-        <div className="doctor-marquee-track">
-          {displayDoctors.map((doctor: Doctor, i: number) => {
+        {/* ── 3-COLUMN DOCTOR CARDS GRID ─────────── */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '24px',
+          maxWidth: 1200,
+          margin: '0 auto',
+        }}>
+          {filteredDoctors.map((doctor: Doctor) => {
             return (
               <div
-                key={`${doctor.slug}-${i}`}
+                key={doctor.slug}
                 className="doctor-card-item"
               >
-                {/* Header Strip with Speciality & Qualification Badge */}
+                {/* Doctor Portrait Image Header */}
                 <div style={{
-                  padding: '16px 20px',
+                  position: 'relative',
+                  height: 240,
+                  overflow: 'hidden',
+                  borderTopLeftRadius: '20px',
+                  borderTopRightRadius: '20px',
+                  background: 'linear-gradient(135deg, #0F172A 0%, #164E63 100%)',
+                }}>
+                  <img
+                    src={doctor.image}
+                    alt={doctor.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'top center',
+                      display: 'block',
+                    }}
+                  />
+                  <div style={{
+                    position: 'absolute',
+                    top: 12,
+                    left: 12,
+                    pointerEvents: 'none',
+                  }}>
+                    <span style={{
+                      fontSize: '0.68rem',
+                      fontWeight: 800,
+                      padding: '4px 10px',
+                      borderRadius: '100px',
+                      background: 'rgba(15, 23, 42, 0.8)',
+                      backdropFilter: 'blur(6px)',
+                      color: '#38BDF8',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.04em',
+                      border: '1px solid rgba(56, 189, 248, 0.4)',
+                    }}>
+                      {doctor.speciality}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Header Strip with Doctor Name & Qualifications */}
+                <div style={{
+                  padding: '14px 18px',
                   background: 'linear-gradient(135deg, #0F172A 0%, #164E63 100%)',
                   color: '#FFFFFF',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  borderTopLeftRadius: '20px',
-                  borderTopRightRadius: '20px',
+                  gap: '8px',
                 }}>
-                  <div style={{ minWidth: 0, paddingRight: '6px' }}>
-                    <span style={{
-                      fontSize: '0.7rem',
-                      fontWeight: 750,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.04em',
-                      color: '#38BDF8',
-                      display: 'block',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                    }}>
-                      {doctor.speciality}
-                    </span>
+                  <div style={{ minWidth: 0, flex: 1 }}>
                     <div style={{
-                      fontSize: '1.025rem',
+                      fontSize: '1.05rem',
                       fontWeight: 800,
                       color: '#FFFFFF',
-                      marginTop: '2px',
                       whiteSpace: 'nowrap',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
@@ -288,9 +203,9 @@ export function Doctors() {
                   </div>
                   {doctor.qualifications && (
                     <span style={{
-                      fontSize: '0.7rem',
+                      fontSize: '0.68rem',
                       fontWeight: 800,
-                      padding: '4px 8px',
+                      padding: '3px 8px',
                       borderRadius: '6px',
                       background: 'rgba(56, 189, 248, 0.2)',
                       border: '1px solid rgba(56, 189, 248, 0.35)',
@@ -304,38 +219,38 @@ export function Doctors() {
                 </div>
 
                 {/* Body Content */}
-                <div style={{ padding: '18px 20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#0E7490', marginBottom: '6px' }}>
+                <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ fontSize: '0.875rem', fontWeight: 750, color: '#C0183E', marginBottom: '6px' }}>
                     {doctor.designation}
                   </div>
 
                   {doctor.opdTimings && (
                     <div style={{
                       display: 'flex', alignItems: 'center', gap: '6px',
-                      fontSize: '0.75rem', color: '#64748B', marginBottom: '12px',
+                      fontSize: '0.78rem', color: '#64748B', marginBottom: '12px',
                     }}>
-                      <Clock size={13} color="#0E7490" style={{ flexShrink: 0 }} />
+                      <Clock size={13} color="#C0183E" style={{ flexShrink: 0 }} />
                       <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{doctor.opdTimings}</span>
                     </div>
                   )}
 
                   <p style={{
-                    fontSize: '0.85rem',
+                    fontSize: '0.875rem',
                     color: '#475569',
-                    lineHeight: 1.5,
+                    lineHeight: 1.55,
                     marginBottom: '14px',
                   }}>
                     {doctor.bio}
                   </p>
 
                   {/* Focus Areas */}
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', marginBottom: '16px', marginTop: 'auto' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px', marginBottom: '18px', marginTop: 'auto' }}>
                     {doctor.focusAreas.slice(0, 3).map((area: string) => (
                       <span key={area} style={{
                         padding: '3px 8px', borderRadius: '6px',
                         fontSize: '0.7rem', fontWeight: 600,
-                        background: '#F1F5F9', color: '#334155',
-                        border: '1px solid #E2E8F0',
+                        background: '#FFF0F3', color: '#96122F',
+                        border: '1px solid #FCE7EC',
                         whiteSpace: 'nowrap',
                       }}>
                         {area}
@@ -348,9 +263,9 @@ export function Doctors() {
                     onClick={() => scrollTo('appointment')}
                     style={{
                       width: '100%',
-                      padding: '10px',
+                      padding: '11px',
                       borderRadius: '10px',
-                      background: '#0E7490',
+                      background: 'linear-gradient(135deg, #C0183E 0%, #96122F 100%)',
                       color: '#FFFFFF',
                       fontSize: '0.85rem',
                       fontWeight: 750,
@@ -360,7 +275,7 @@ export function Doctors() {
                       alignItems: 'center',
                       justifyContent: 'center',
                       gap: '6px',
-                      boxShadow: '0 4px 12px rgba(14, 116, 144, 0.2)',
+                      boxShadow: '0 4px 12px rgba(192, 24, 62, 0.28)',
                     }}
                   >
                     <Calendar size={14} /> Book Doctor Visit
@@ -370,18 +285,16 @@ export function Doctors() {
             );
           })}
         </div>
-      </div>
 
-      {/* Note on Doctor Roster */}
-      <div className="container" style={{ maxWidth: 1340, margin: '2.5rem auto 0', padding: '0 clamp(1rem, 3vw, 2.5rem)' }}>
+        {/* Note on Doctor Roster */}
         <div style={{
           textAlign: 'center',
           padding: '16px 20px',
           borderRadius: '16px',
           background: '#FFFFFF',
-          border: '1px solid #CFFAFE',
+          border: '1px solid #FCE7EC',
           maxWidth: '780px',
-          margin: '0 auto',
+          margin: '2.5rem auto 0',
           fontSize: '0.875rem',
           color: '#475569',
           boxShadow: '0 2px 8px rgba(0,0,0,0.02)',
@@ -390,49 +303,8 @@ export function Doctors() {
         </div>
       </div>
 
-      {/* ── CSS STYLING FOR SMOOTH MOVING FLOW & PAUSE ON HOVER ── */}
       <style>{`
-        .doctor-marquee-wrapper {
-          width: 100%;
-          overflow-x: auto;
-          overflow-y: hidden;
-          padding: 12px 0 24px 0;
-          cursor: grab;
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-        .doctor-marquee-wrapper::-webkit-scrollbar {
-          display: none;
-        }
-        .doctor-marquee-track {
-          display: flex;
-          gap: 20px;
-          width: max-content;
-          animation: moveDoctors 60s linear infinite;
-          will-change: transform;
-        }
-
-        /* PAUSE MOVING EFFECT WHEN CURSOR IS PLACED / HOVERED */
-        .doctor-marquee-wrapper:hover .doctor-marquee-track {
-          animation-play-state: paused !important;
-        }
-
-        .doctor-marquee-wrapper.force-paused .doctor-marquee-track {
-          animation-play-state: paused !important;
-        }
-
-        @keyframes moveDoctors {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-
         .doctor-card-item {
-          width: 320px;
-          flex-shrink: 0;
           background: #FFFFFF;
           border-radius: 20px;
           border: 1px solid #E2E8F0;
@@ -440,40 +312,13 @@ export function Doctors() {
           display: flex;
           flex-direction: column;
           transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+          overflow: hidden;
         }
 
         .doctor-card-item:hover {
           transform: translateY(-6px);
-          box-shadow: 0 16px 36px rgba(14, 116, 144, 0.14);
-          border-color: #0E7490;
-        }
-
-        .live-flow-dot {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background: #10B981;
-          display: inline-block;
-          box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-          animation: pulseGreen 1.8s infinite cubic-bezier(0.66, 0, 0, 1);
-        }
-
-        @keyframes pulseGreen {
-          0% {
-            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-          }
-          70% {
-            box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
-          }
-          100% {
-            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-          }
-        }
-
-        @media (max-width: 992px) {
-          .lead-doc-left { grid-column: span 12 !important; }
-          .lead-doc-right { grid-column: span 12 !important; margin-top: 1rem; }
-          .doctor-card-item { width: 295px; }
+          box-shadow: 0 16px 36px rgba(192, 24, 62, 0.14);
+          border-color: #F5C2CE;
         }
       `}</style>
     </section>

@@ -1,17 +1,16 @@
 import { motion } from 'framer-motion';
 import {
-  BellRing,
+  Calendar,
   Pill,
-  HeartHandshake,
-  MessageCircle,
+  HeartPulse,
+  MessageSquare,
   CheckCheck,
-  CalendarCheck,
   ShieldCheck,
   Send,
   Sparkles,
   Phone,
   Heart,
-  Stethoscope
+  Stethoscope,
 } from 'lucide-react';
 import { useInView, useReducedMotion } from '@/hooks';
 import { siteConfig } from '@/content/site.config';
@@ -22,38 +21,38 @@ interface JourneyStage {
   step: string;
   title: string;
   desc: string;
-  icon: typeof BellRing;
+  icon: typeof Calendar;
   badge: string;
 }
 
 const stages: JourneyStage[] = [
   {
     step: '01',
-    title: 'CHECKUP REMINDERS',
-    desc: 'Never miss an important follow-up appointment with your doctor.',
-    icon: CalendarCheck,
-    badge: 'Doctor Reviews',
+    title: 'FOLLOW-UP REMINDERS',
+    desc: 'Never miss an important follow-up appointment or review for your care.',
+    icon: Calendar,
+    badge: 'Timely Reviews',
   },
   {
     step: '02',
     title: 'MEDICINE REMINDERS',
-    desc: 'Stay on track with simple reminders for your prescribed medicines.',
+    desc: 'Stay on track with timely reminders for your prescribed medicines.',
     icon: Pill,
-    badge: 'Daily Dosage',
+    badge: 'Dosage Support',
   },
   {
     step: '03',
-    title: 'RECOVERY TIPS',
-    desc: 'Receive easy post-visit care tips and instructions to heal quickly.',
-    icon: HeartHandshake,
-    badge: 'Health Advice',
+    title: 'RECOVERY GUIDANCE',
+    desc: 'Receive helpful post-care instructions and recovery guidance after your visit.',
+    icon: HeartPulse,
+    badge: 'Care Protocol',
   },
   {
     step: '04',
-    title: 'WHATSAPP UPDATES',
-    desc: 'Get your lab reports and ask questions directly on WhatsApp.',
-    icon: MessageCircle,
-    badge: 'WhatsApp Help',
+    title: 'STAY CONNECTED',
+    desc: 'Get important updates, reports, and emergency contacts directly through WhatsApp.',
+    icon: MessageSquare,
+    badge: 'Direct WhatsApp Support',
   },
 ];
 
@@ -61,39 +60,39 @@ const chatMessages = [
   {
     id: 1,
     type: 'incoming',
-    text: '👋 Hello! We hope you are feeling better after today’s doctor visit at Surya Hospital.',
+    text: `👋 Hello! We hope you are feeling better after today's consultation at ${siteConfig.name}.`,
     time: '04:30 PM',
     tag: null,
   },
   {
     id: 2,
     type: 'incoming',
-    title: '🗓️ Doctor Visit Reminder',
-    text: 'Your next checkup with our doctor is scheduled for tomorrow at 10:30 AM.',
+    title: '🗓️ Follow-up Reminder',
+    text: 'Your follow-up appointment with Dr. Kethi Reddy Venkata Mohan Reddy is scheduled for tomorrow at 10:30 AM.',
     time: '04:31 PM',
-    tag: 'Visit Confirmed',
+    tag: 'Appointment Confirmed',
     accent: '#0E7490',
   },
   {
     id: 3,
     type: 'incoming',
-    title: '💊 Medicine Reminder',
-    text: 'Please take your medicines on time as advised by your doctor. Drink plenty of water and take good rest.',
+    title: '💊 Medication Schedule',
+    text: 'Please continue the prescribed course as advised by your physician. Ensure plenty of hydration and rest.',
     time: '04:32 PM',
-    tag: 'Medicine Tips',
+    tag: 'Prescription Guideline',
     accent: '#059669',
   },
   {
     id: 4,
     type: 'outgoing',
-    text: 'Thank you so much! The medicine reminders and lab test updates are very helpful for us. 🙏',
+    text: 'Thank you so much! The medication reminders are very helpful for us. 🙏',
     time: '04:35 PM',
     tag: null,
   },
   {
     id: 5,
     type: 'incoming',
-    text: '💙 Surya Hospital — We are always here for you. If you need any help, message us anytime.',
+    text: `💙 ${siteConfig.name} — We're here whenever you need us. Have any questions? Our care desk is always available.`,
     time: '04:36 PM',
     tag: null,
   },
@@ -110,11 +109,12 @@ export function CareBeyondVisit() {
       className="section"
       aria-labelledby="care-beyond-heading"
       style={{
-        background: '#ECFEFF',
+        background: '#F0F9FF',
         position: 'relative',
         overflow: 'hidden',
         padding: 'clamp(4rem, 6vw, 6rem) 0',
-        borderBottom: '1px solid #CFFAFE',
+        borderTop: '1px solid #E0F2FE',
+        borderBottom: '1px solid #E0F2FE',
       }}
     >
       {/* Background Decorative Ambient Glows */}
@@ -140,39 +140,48 @@ export function CareBeyondVisit() {
           left: '-8%',
           width: '550px',
           height: '550px',
-          background: 'radial-gradient(circle, rgba(2, 132, 199, 0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(192, 24, 62, 0.05) 0%, transparent 70%)',
           borderRadius: '50%',
           filter: 'blur(60px)',
           pointerEvents: 'none',
         }}
       />
 
-      <div className="container" style={{ maxWidth: 1340, margin: '0 auto', padding: '0 clamp(1rem, 3vw, 2.5rem)', position: 'relative', zIndex: 1 }}>
-        
+      <div
+        className="container"
+        style={{
+          maxWidth: 1340,
+          margin: '0 auto',
+          padding: '0 clamp(1rem, 3vw, 2.5rem)',
+          position: 'relative',
+          zIndex: 1,
+        }}
+      >
         {/* Section Header */}
         <motion.div
           initial={rm ? false : { opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: EASE }}
-          style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto clamp(2.5rem, 5vw, 4rem) auto' }}
+          style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto clamp(2.5rem, 5vw, 4rem) auto' }}
         >
           <div
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: 6,
-              padding: '6px 16px',
+              gap: 8,
+              padding: '6px 18px',
               borderRadius: 100,
               background: '#FFFFFF',
               border: '1px solid #BAE6FD',
               fontSize: '0.8125rem',
               fontWeight: 800,
-              color: '#0E7490',
-              letterSpacing: '0.06em',
-              marginBottom: 14,
+              color: '#0369A1',
+              letterSpacing: '0.08em',
+              marginBottom: 16,
+              boxShadow: '0 2px 8px rgba(3, 105, 161, 0.08)',
             }}
           >
-            <Sparkles size={14} color="#0E7490" />
+            <Sparkles size={14} color="#0284C7" />
             <span>CARE BEYOND THE VISIT</span>
           </div>
 
@@ -180,28 +189,28 @@ export function CareBeyondVisit() {
             id="care-beyond-heading"
             style={{
               fontFamily: 'Fraunces, Georgia, serif',
-              fontSize: 'clamp(2.1rem, 3.8vw, 3.25rem)',
+              fontSize: 'clamp(2.1rem, 3.8vw, 3.4rem)',
               fontWeight: 750,
               lineHeight: 1.15,
               letterSpacing: '-0.025em',
               color: '#0F172A',
-              marginBottom: '1rem',
+              marginBottom: '1.1rem',
             }}
           >
             Care that continues{' '}
-            <span style={{ color: '#0E7490', fontStyle: 'italic' }}>after you leave.</span>
+            <span style={{ color: '#0369A1', fontStyle: 'italic' }}>after you leave.</span>
           </h2>
 
           <p
             style={{
               fontSize: 'clamp(1rem, 1.15vw, 1.125rem)',
               color: '#475569',
-              lineHeight: 1.65,
-              maxWidth: 680,
+              lineHeight: 1.7,
+              maxWidth: 720,
               margin: '0 auto',
             }}
           >
-            We help you and your family stay on track with doctor reviews, medicine reminders, and fast lab reports on WhatsApp.
+            At {siteConfig.name}, your care doesn’t stop when you leave the hospital. From follow-up appointments and medicines to recovery guidance and important updates, we help families stay connected throughout the care journey.
           </p>
         </motion.div>
 
@@ -231,11 +240,11 @@ export function CareBeyondVisit() {
                 aria-hidden="true"
                 style={{
                   position: 'absolute',
-                  left: '29px',
+                  left: '30px',
                   top: '28px',
                   bottom: '36px',
                   width: '2px',
-                  background: 'linear-gradient(180deg, #0E7490 0%, #0284C7 50%, #25D366 100%)',
+                  background: 'linear-gradient(180deg, #0284C7 0%, #0E7490 50%, #25D366 100%)',
                   opacity: 0.35,
                   zIndex: 0,
                 }}
@@ -253,7 +262,7 @@ export function CareBeyondVisit() {
                       position: 'relative',
                       zIndex: 1,
                       display: 'flex',
-                      alignItems: 'flex-start',
+                      alignItems: 'center',
                       gap: '1.25rem',
                       marginBottom: i === stages.length - 1 ? 0 : '1.35rem',
                     }}
@@ -262,21 +271,20 @@ export function CareBeyondVisit() {
                     <div
                       style={{
                         position: 'relative',
-                        width: '44px',
-                        height: '44px',
+                        width: '46px',
+                        height: '46px',
                         borderRadius: '50%',
                         background: '#FFFFFF',
-                        border: '2px solid #0E7490',
-                        boxShadow: '0 4px 14px rgba(14, 116, 144, 0.18)',
+                        border: '2px solid #0284C7',
+                        boxShadow: '0 4px 14px rgba(2, 132, 199, 0.2)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         flexShrink: 0,
-                        color: '#0E7490',
-                        marginTop: '2px',
+                        color: '#0284C7',
                       }}
                     >
-                      <Icon size={20} color="#0E7490" />
+                      <Icon size={20} color="#0284C7" />
                       <span
                         style={{
                           position: 'absolute',
@@ -302,8 +310,8 @@ export function CareBeyondVisit() {
                         flex: 1,
                         background: '#FFFFFF',
                         borderRadius: '18px',
-                        padding: '1.15rem 1.4rem',
-                        border: '1px solid #CFFAFE',
+                        padding: '1.2rem 1.45rem',
+                        border: '1px solid #E0F2FE',
                         boxShadow: '0 4px 16px rgba(15, 23, 42, 0.04)',
                         transition: 'transform 0.2s ease, box-shadow 0.2s ease',
                       }}
@@ -337,9 +345,9 @@ export function CareBeyondVisit() {
                             fontWeight: 700,
                             padding: '3px 10px',
                             borderRadius: '100px',
-                            background: '#ECFEFF',
-                            color: '#0E7490',
-                            border: '1px solid #A5F3FC',
+                            background: '#F0F9FF',
+                            color: '#0369A1',
+                            border: '1px solid #BAE6FD',
                           }}
                         >
                           {st.badge}
@@ -376,26 +384,26 @@ export function CareBeyondVisit() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '12px',
-                boxShadow: '0 2px 10px rgba(14, 116, 144, 0.06)',
+                boxShadow: '0 2px 10px rgba(2, 132, 199, 0.06)',
               }}
             >
-              <Heart size={18} color="#0E7490" fill="#0E7490" style={{ flexShrink: 0 }} />
+              <Heart size={18} color="#0284C7" fill="#0284C7" style={{ flexShrink: 0 }} />
               <p
                 style={{
                   fontSize: '0.9125rem',
                   fontWeight: 650,
                   fontStyle: 'italic',
-                  color: '#0E7490',
+                  color: '#0369A1',
                   margin: 0,
                   lineHeight: 1.45,
                 }}
               >
-                “Because caring for you doesn’t end at the hospital door.”
+                “Because caring for your health doesn’t end at the hospital door.”
               </p>
             </motion.div>
           </div>
 
-          {/* ══ RIGHT COLUMN: Interactive Smartphone WhatsApp Chat Mockup (5 Cols) ══ */}
+          {/* ══ RIGHT COLUMN: Smartphone WhatsApp Chat Mockup (5 Cols) ══ */}
           <motion.div
             style={{
               gridColumn: 'span 5',
@@ -415,8 +423,8 @@ export function CareBeyondVisit() {
                 padding: '10px',
                 background: '#FFFFFF',
                 boxShadow:
-                  '0 25px 60px -15px rgba(15, 23, 42, 0.18), 0 10px 25px rgba(14, 116, 144, 0.1), 0 0 0 1px rgba(226, 232, 240, 0.9)',
-                maxWidth: '440px',
+                  '0 25px 60px -15px rgba(15, 23, 42, 0.18), 0 10px 25px rgba(2, 132, 199, 0.1), 0 0 0 1px rgba(226, 232, 240, 0.9)',
+                maxWidth: '430px',
                 width: '100%',
                 margin: '0 auto',
               }}
@@ -460,7 +468,7 @@ export function CareBeyondVisit() {
                         justifyContent: 'center',
                         boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
                         flexShrink: 0,
-                        color: '#0E7490',
+                        color: '#075E54',
                       }}
                     >
                       <Stethoscope size={22} />
@@ -481,7 +489,7 @@ export function CareBeyondVisit() {
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                         <span style={{ fontSize: '0.92rem', fontWeight: 800, color: '#FFFFFF', lineHeight: 1.2 }}>
-                          Surya Hospital
+                          {siteConfig.name}
                         </span>
                         <ShieldCheck size={14} color="#4ADE80" />
                       </div>
@@ -492,7 +500,7 @@ export function CareBeyondVisit() {
                   </div>
 
                   <a
-                    href={`tel:${siteConfig.contact.phone}`}
+                    href={`tel:${siteConfig.phone}`}
                     aria-label="Call Hospital"
                     style={{
                       width: '32px',
@@ -650,7 +658,7 @@ export function CareBeyondVisit() {
                       border: '1px solid #E2E8F0',
                     }}
                   >
-                    Reply to Surya Care...
+                    Reply to YSR Care Desk...
                   </div>
                   <div
                     style={{

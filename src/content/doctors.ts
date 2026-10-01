@@ -4,6 +4,8 @@ export interface Doctor {
   name: string;
   title: string;
   department: string;
+  speciality: string;
+  designation: string;
   experience: string;
   qualifications: string;
   specialitySlug: string;
@@ -11,64 +13,64 @@ export interface Doctor {
   image: string;
   languages: string[];
   opdTimings: string;
+  focusAreas: string[];
+  isLeadership?: boolean;
 }
 
 export const doctors: Doctor[] = [
   {
-    id: 'consultant-physician',
-    slug: 'consultant-physician',
-    name: 'Senior Consultant Physician',
-    title: 'Senior Consultant - Internal Medicine',
+    id: 'dr-kethireddy-venkata-mohan-reddy',
+    slug: 'dr-kethireddy-venkata-mohan-reddy',
+    name: 'Dr. Kethi Reddy Venkata Mohan Reddy',
+    title: 'Chief Joint Replacement & Orthopaedic Surgeon',
+    department: 'Orthopaedics & Joint Replacement',
+    speciality: 'Joint Replacement & Orthopaedics',
+    designation: 'Joint Replacement Surgeon | M.S (Ortho)',
+    experience: '20+ Years',
+    qualifications: 'MBBS, M.S (Ortho)',
+    specialitySlug: 'orthopaedics',
+    bio: 'Renowned Chief Orthopaedic & Joint Replacement Surgeon with extensive expertise in primary & revision total knee and hip replacements, arthroscopic sports injury treatments, complex fracture fixation, and deformity corrections.',
+    image: '/assets/ysr_doctor.png',
+    languages: ['English', 'Telugu', 'Hindi', 'Kannada'],
+    opdTimings: 'Mon - Sat: 9:30 AM - 2:00 PM, 5:30 PM - 9:00 PM',
+    focusAreas: ['Total Knee Replacement', 'Total Hip Replacement', 'Arthroscopic Surgery', 'Complex Trauma & Fractures', 'Spine & Bone Care'],
+    isLeadership: true,
+  },
+  {
+    id: 'dr-r-umesh-naik',
+    slug: 'dr-r-umesh-naik',
+    name: 'Dr. R. Umesh Naik',
+    title: 'Consultant Physician & Diabetologist',
     department: 'General Medicine',
-    experience: '18+ Years',
+    speciality: 'Diabetology & Internal Medicine',
+    designation: 'Consultant Physician | Diabetologist',
+    experience: '15+ Years',
     qualifications: 'MBBS, MD (General Medicine)',
     specialitySlug: 'general-medicine',
-    bio: 'Dedicated physician specializing in chronic disease management, diabetes, hypertensive care, and comprehensive adult inpatient and outpatient medical evaluations.',
-    image: '/assets/doctors/doctor-sivasankar.png',
-    languages: ['English', 'Telugu', 'Hindi'],
+    bio: 'Dedicated Consultant Physician and Diabetologist specializing in comprehensive diabetes care, metabolic disorders, hypertension, seasonal fevers, infectious diseases, and adult inpatient and outpatient care.',
+    image: '/assets/ysr_d1.png',
+    languages: ['English', 'Telugu', 'Hindi', 'Kannada'],
     opdTimings: 'Mon - Sat: 9:00 AM - 2:00 PM, 5:00 PM - 8:30 PM',
+    focusAreas: ['Diabetes Management', 'Hypertension & BP Care', 'Infectious Diseases', 'Metabolic Health', 'General Physician Care'],
+    isLeadership: true,
   },
   {
-    id: 'consultant-surgeon',
-    slug: 'consultant-surgeon',
-    name: 'Consultant General & Laparoscopic Surgeon',
-    title: 'Senior Laparoscopic & General Surgeon',
-    department: 'General Surgery',
-    experience: '15+ Years',
-    qualifications: 'MBBS, MS (General Surgery), FMAS',
-    specialitySlug: 'general-surgery',
-    bio: 'Expert laparoscopic surgeon specializing in minimally invasive abdominal surgeries, hernia repairs, gall bladder treatments, and emergency surgical interventions.',
-    image: '/assets/doctors/doctor-specialist.png',
-    languages: ['English', 'Telugu'],
-    opdTimings: 'Mon - Sat: 10:00 AM - 3:00 PM, 6:00 PM - 9:00 PM',
-  },
-  {
-    id: 'consultant-gynecologist',
-    slug: 'consultant-gynecologist',
-    name: 'Consultant Obstetrician & Gynaecologist',
-    title: 'Senior Consultant - Obstetrics & Gynaecology',
+    id: 'dr-p-suguna',
+    slug: 'dr-p-suguna',
+    name: 'Dr. P. Suguna',
+    title: 'Consultant Obstetrician & Gynaecologist',
     department: 'Obstetrics & Gynaecology',
+    speciality: 'Obstetrics & Gynaecology (FMAS)',
+    designation: 'Obstetrician & Gynaecologist | FMAS',
     experience: '14+ Years',
-    qualifications: 'MBBS, DGO, DNB (OBG)',
+    qualifications: 'MBBS, DNB, FMAS',
     specialitySlug: 'obstetrics-gynaecology',
-    bio: 'Compassionate specialist providing holistic healthcare for women, including prenatal care, high-risk maternity care, and advanced gynecological procedures.',
-    image: '/assets/doctors/doctor-swetha.png',
+    bio: 'Highly skilled Consultant Obstetrician, Gynaecologist & Laparoscopic Surgeon (FMAS) providing comprehensive care for women, including prenatal and antenatal care, high-risk maternity, painless delivery, caesarean sections, advanced laparoscopic gynaecological procedures, and infertility evaluation.',
+    image: '/assets/ysr_d2.png',
     languages: ['English', 'Telugu', 'Hindi'],
     opdTimings: 'Mon - Sat: 9:30 AM - 1:30 PM, 5:30 PM - 8:30 PM',
-  },
-  {
-    id: 'consultant-pediatrician',
-    slug: 'consultant-pediatrician',
-    name: 'Consultant Paediatrician',
-    title: 'Specialist Paediatrician & Neonatal Care',
-    department: 'Paediatrics',
-    experience: '12+ Years',
-    qualifications: 'MBBS, MD (Paediatrics)',
-    specialitySlug: 'paediatrics',
-    bio: 'Experienced paediatrician focused on newborn care, child development, complete immunization programs, and childhood infection treatment.',
-    image: '/assets/doctors/doctor-paediatrician.png',
-    languages: ['English', 'Telugu', 'Kannada'],
-    opdTimings: 'Mon - Sat: 10:00 AM - 2:00 PM, 6:00 PM - 9:00 PM',
+    focusAreas: ['High-Risk Pregnancy', 'Normal & C-Section Delivery', 'Laparoscopic Gynaecology (FMAS)', 'Infertility & PCOS', 'Women Health & Wellness'],
+    isLeadership: true,
   },
 ];
 

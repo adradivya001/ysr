@@ -1,14 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 import { Hero } from '@/components/sections/Hero';
-import { TrustStrip } from '@/components/sections/TrustStrip';
 import { About } from '@/components/sections/About';
+import { Doctors } from '@/components/sections/Doctors';
 import { Specialities } from '@/components/sections/Specialities';
-import { EmergencySection } from '@/components/sections/EmergencySection';
-import { MedicalServicesSection } from '@/components/sections/MedicalServicesSection';
-import { FacilitiesSection } from '@/components/sections/FacilitiesSection';
-import { WhyChoose } from '@/components/sections/WhyChoose';
-import { CareBand } from '@/components/sections/CareBand';
-import { PatientJourney } from '@/components/sections/PatientJourney';
+import { CareBeyondVisit } from '@/components/sections/CareBeyondVisit';
 import { Appointment } from '@/components/sections/Appointment';
 import { Contact } from '@/components/sections/Contact';
 import { FAQ } from '@/components/sections/FAQ';
@@ -42,19 +37,9 @@ export function HomePage() {
           },
           areaServed: 'Anantapur',
           medicalSpecialty: [
-            'General Medicine',
-            'General Surgery',
-            'Cardiology',
-            'Orthopaedics',
-            'Paediatrics',
+            'Orthopaedics & Joint Replacement',
+            'General Medicine & Diabetology',
             'Obstetrics & Gynaecology',
-            'Neurosurgery',
-            'Pulmonology',
-            'ENT',
-            'Urology',
-            'Nephrology',
-            'Plastic Surgery',
-            'Surgical Gastroenterology',
           ],
         })}</script>
       </Helmet>
@@ -62,40 +47,25 @@ export function HomePage() {
       {/* 1. HERO SECTION */}
       <Hero />
 
-      {/* 2. TRUST STATS STRIP */}
-      <TrustStrip />
-
-      {/* 3. ABOUT THE HOSPITAL */}
+      {/* 2. ABOUT THE HOSPITAL */}
       <About />
 
-      {/* 4. OUR SPECIALITIES (VERTICAL TABS + DETAIL PANEL) */}
+      {/* 3. EXPERT DOCTORS ROSTER */}
+      <Doctors />
+
+      {/* 4. OUR SPECIALITIES */}
       <Specialities />
 
-      {/* 5. 24/7 EMERGENCY CARE SECTION */}
-      <EmergencySection />
+      {/* 5. CARE BEYOND THE VISIT (CONTINUED POST-CARE) */}
+      <CareBeyondVisit />
 
-      {/* 6. OUR MEDICAL SERVICES (8-CARD GRID) */}
-      <MedicalServicesSection />
-
-      {/* 7. FACILITIES & SUPPORT (8 CAPABILITY CARDS) */}
-      <FacilitiesSection />
-
-      {/* 8. WHY CHOOSE US (5 COLORFUL REASON CARDS) */}
-      <WhyChoose />
-
-      {/* 9. CARE BAND QUOTE BANNER */}
-      <CareBand />
-
-      {/* 10. PATIENT CARE JOURNEY TIMELINE */}
-      <PatientJourney />
-
-      {/* 11. APPOINTMENT BOOKING FORM */}
+      {/* 6. APPOINTMENT BOOKING */}
       <Appointment />
 
-      {/* 12. CONTACT & LOCATION MAP */}
+      {/* 6. CONTACT & LOCATION */}
       <Contact />
 
-      {/* 13. FREQUENTLY ASKED QUESTIONS */}
+      {/* 7. FREQUENTLY ASKED QUESTIONS */}
       <FAQ />
     </>
   );

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Phone, MapPin, Heart, HeartPulse } from 'lucide-react';
+import { Phone, MapPin } from 'lucide-react';
 import { siteConfig } from '@/content/site.config';
 import { specialities } from '@/content/specialities';
 
@@ -27,28 +27,28 @@ export function Footer() {
         }}>
           {/* Brand */}
           <div style={{ gridColumn: 'span 1' }}>
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 10,
-              padding: '10px 16px',
-              borderRadius: '16px',
-              background: '#FFFFFF',
-              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.15)',
-              marginBottom: '1.25rem',
-            }}>
-              <div style={{
-                width: 32, height: 32, borderRadius: 8,
-                background: 'linear-gradient(135deg, #C0183E, #96122F)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: 'white',
-              }}>
-                <HeartPulse size={18} />
-              </div>
-              <div style={{ fontFamily: 'Fraunces, Georgia, serif', fontWeight: 700, fontSize: '1.05rem', color: '#0F172A' }}>
-                Dr. YSR Memorial
-              </div>
-            </div>
+            <Link
+              to="/"
+              aria-label={siteConfig.name}
+              style={{
+                display: 'inline-block',
+                marginBottom: '1.25rem',
+                textDecoration: 'none',
+              }}
+            >
+              <img
+                src="/assets/ysr_logo.png"
+                alt={siteConfig.name}
+                style={{
+                  height: 52,
+                  width: 'auto',
+                  maxWidth: 220,
+                  objectFit: 'contain',
+                  display: 'block',
+                  filter: 'brightness(0) invert(1)',
+                }}
+              />
+            </Link>
 
             <p style={{ color: 'var(--dark-text-muted)', fontSize: '0.9rem', lineHeight: 1.7, maxWidth: 280 }}>
               {siteConfig.subTagline}

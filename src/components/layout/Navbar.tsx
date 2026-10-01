@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, Menu, X, ArrowRight, HeartPulse } from 'lucide-react';
+import { Phone, Menu, X, ArrowRight } from 'lucide-react';
 import { siteConfig } from '@/content/site.config';
 import { trackEvent } from '@/lib/analytics';
 
@@ -12,10 +12,8 @@ type NavItem = { label: string; href: string; sectionId?: string };
 const navLinks: NavItem[] = [
   { label: 'Home',         href: '/',              sectionId: 'home' },
   { label: 'About',        href: '/#about',        sectionId: 'about' },
+  { label: 'Doctors',      href: '/#doctors',      sectionId: 'doctors' },
   { label: 'Specialities', href: '/#specialities', sectionId: 'specialities' },
-  { label: 'Services',     href: '/#services',     sectionId: 'services' },
-  { label: 'Why Choose Us',href: '/#why-choose',   sectionId: 'why-choose' },
-  { label: 'Journey',      href: '/#patient-journey', sectionId: 'patient-journey' },
   { label: 'Contact',      href: '/#contact',      sectionId: 'contact' },
 ];
 
@@ -88,7 +86,7 @@ export function Navbar() {
         }}
       >
         <div style={{ maxWidth: 1380, margin: '0 auto', padding: '0 clamp(1.25rem, 3vw, 2.5rem)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', height: 68, gap: 8, justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', height: 74, gap: 8, justifyContent: 'space-between' }}>
 
             {/* Brand Logo */}
             <Link
@@ -97,23 +95,16 @@ export function Navbar() {
               aria-label={siteConfig.name}
               style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0, textDecoration: 'none' }}
             >
-              <div style={{
-                width: 42, height: 42, borderRadius: 11,
-                background: 'linear-gradient(135deg, #C0183E 0%, #96122F 100%)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                boxShadow: '0 2px 10px rgba(192,24,62,0.28)', flexShrink: 0,
-                color: '#FFFFFF',
-              }}>
-                <HeartPulse size={22} />
-              </div>
-              <div>
-                <div style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: '1.05rem', fontWeight: 700, color: '#0D1B2A', lineHeight: 1.2 }}>
-                  Dr. YSR Memorial
-                </div>
-                <div style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#C0183E' }}>
-                  Hospital · Sai Nagar, Anantapur
-                </div>
-              </div>
+              <img
+                src="/assets/ysr_logo.png"
+                alt={siteConfig.name}
+                style={{
+                  height: 58,
+                  width: 'auto',
+                  objectFit: 'contain',
+                  display: 'block'
+                }}
+              />
             </Link>
 
             {/* Desktop nav */}
@@ -229,14 +220,19 @@ export function Navbar() {
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
-                <div>
-                  <div style={{ fontFamily: 'Fraunces, Georgia, serif', fontWeight: 700, fontSize: '1.05rem', color: '#0F172A' }}>
-                    Dr. YSR Memorial
-                  </div>
-                  <div style={{ fontSize: '0.7rem', color: '#C0183E', fontWeight: 700 }}>
-                    Hospital · Sai Nagar, Anantapur
-                  </div>
-                </div>
+                <Link to="/" onClick={() => setMobileOpen(false)} aria-label={siteConfig.name} style={{ display: 'inline-block' }}>
+                  <img
+                    src="/assets/ysr_logo.png"
+                    alt={siteConfig.name}
+                    style={{
+                      height: 48,
+                      width: 'auto',
+                      maxWidth: 200,
+                      objectFit: 'contain',
+                      display: 'block'
+                    }}
+                  />
+                </Link>
                 <button
                   type="button"
                   onClick={() => setMobileOpen(false)}

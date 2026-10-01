@@ -57,6 +57,40 @@ export function DoctorPage() {
             background: '#FFFFFF', padding: '2.5rem', borderRadius: '24px',
             border: '1px solid #E2E8F0', boxShadow: '0 10px 30px rgba(0,0,0,0.04)',
           }}>
+            {/* Left Column: Doctor Photo & Quick Info Card */}
+            <div style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center',
+              background: '#F8FAFC', padding: '2rem', borderRadius: '20px',
+              border: '1px solid #E2E8F0', textAlign: 'center',
+            }}>
+              <img
+                src={doctor.image}
+                alt={doctor.name}
+                style={{
+                  width: 240, height: 240, borderRadius: '20px', objectFit: 'cover',
+                  boxShadow: '0 12px 28px rgba(0,0,0,0.1)', marginBottom: '1.25rem',
+                  border: '3px solid #FFFFFF',
+                }}
+              />
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0F172A' }}>{doctor.name}</div>
+              <div style={{ fontSize: '0.875rem', fontWeight: 700, color: '#0E7490', marginTop: 4 }}>{doctor.designation}</div>
+              <div style={{ fontSize: '0.8rem', color: '#64748B', marginTop: 4 }}>{doctor.qualifications}</div>
+
+              {doctor.languages && doctor.languages.length > 0 && (
+                <div style={{ marginTop: '1.25rem', display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center' }}>
+                  {doctor.languages.map((lang) => (
+                    <span key={lang} style={{
+                      padding: '3px 8px', borderRadius: 6, fontSize: '0.75rem',
+                      background: '#FFFFFF', border: '1px solid #E2E8F0', color: '#475569', fontWeight: 600,
+                    }}>
+                      🗣️ {lang}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Right Column: Detailed Bio & Consultation Booking */}
             <div>
               <div style={{
                 display: 'inline-flex', alignItems: 'center', gap: 6,
@@ -88,6 +122,22 @@ export function DoctorPage() {
                   <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0E7490', marginTop: 4 }}>{doctor.experience}</div>
                 </div>
               </div>
+
+              {doctor.focusAreas && doctor.focusAreas.length > 0 && (
+                <div style={{ marginBottom: '1.75rem' }}>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 750, color: '#0F172A', marginBottom: 8 }}>Special Focus Areas:</div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                    {doctor.focusAreas.map((area) => (
+                      <span key={area} style={{
+                        padding: '4px 10px', borderRadius: 8, fontSize: '0.78rem', fontWeight: 600,
+                        background: '#ECFEFF', border: '1px solid #CFFAFE', color: '#0E7490',
+                      }}>
+                        ✓ {area}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px', borderRadius: 12, background: '#ECFEFF', color: '#0E7490', marginBottom: '2rem' }}>
                 <Clock size={20} />
