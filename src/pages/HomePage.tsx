@@ -3,6 +3,7 @@ import { Hero } from '@/components/sections/Hero';
 import { About } from '@/components/sections/About';
 import { Doctors } from '@/components/sections/Doctors';
 import { Specialities } from '@/components/sections/Specialities';
+import { WhyChoose } from '@/components/sections/WhyChoose';
 import { CareBeyondVisit } from '@/components/sections/CareBeyondVisit';
 import { Appointment } from '@/components/sections/Appointment';
 import { Contact } from '@/components/sections/Contact';
@@ -56,7 +57,10 @@ export function HomePage() {
       {/* 4. OUR SPECIALITIES */}
       <Specialities />
 
-      {/* 5. CARE BEYOND THE VISIT (CONTINUED POST-CARE) */}
+      {/* 5. WHY CHOOSE US */}
+      <WhyChoose />
+
+      {/* 6. CARE BEYOND THE VISIT (CONTINUED POST-CARE) */}
       <CareBeyondVisit />
 
       {/* 6. APPOINTMENT BOOKING */}

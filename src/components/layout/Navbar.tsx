@@ -10,11 +10,12 @@ const E = [0.22, 1, 0.36, 1] as const;
 type NavItem = { label: string; href: string; sectionId?: string };
 
 const navLinks: NavItem[] = [
-  { label: 'Home',         href: '/',              sectionId: 'home' },
-  { label: 'About',        href: '/#about',        sectionId: 'about' },
-  { label: 'Doctors',      href: '/#doctors',      sectionId: 'doctors' },
-  { label: 'Specialities', href: '/#specialities', sectionId: 'specialities' },
-  { label: 'Contact',      href: '/#contact',      sectionId: 'contact' },
+  { label: 'Home',          href: '/',               sectionId: 'home' },
+  { label: 'About',         href: '/#about',         sectionId: 'about' },
+  { label: 'Doctors',       href: '/#doctors',       sectionId: 'doctors' },
+  { label: 'Specialities',  href: '/#specialities',  sectionId: 'specialities' },
+  { label: 'Why Choose Us', href: '/#why-choose',    sectionId: 'why-choose' },
+  { label: 'Contact',       href: '/#contact',       sectionId: 'contact' },
 ];
 
 function scrollTo(id: string) {
