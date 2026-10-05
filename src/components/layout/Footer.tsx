@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+﻿import { Link } from 'react-router-dom';
 import { Phone, MapPin } from 'lucide-react';
 import { siteConfig } from '@/content/site.config';
 import { specialities } from '@/content/specialities';
@@ -104,7 +104,7 @@ export function Footer() {
               {specialities.slice(0, 7).map((s) => (
                 <li key={s.slug}>
                   <Link
-                    to={`/specialities/${s.slug}`}
+                    to="/#specialities"
                     style={{ color: 'var(--dark-text-muted)', fontSize: '0.875rem', textDecoration: 'none' }}
                   >
                     {s.name}
@@ -144,11 +144,11 @@ export function Footer() {
           color: 'var(--dark-text-muted)',
         }}>
           <div>
-            © {year} <strong>Dr. YSR Memorial Hospital</strong>. All rights reserved. Sai Nagar, Anantapur.
+            &copy; {year} <strong>Dr. YSR Memorial Hospital</strong>. All rights reserved. Sai Nagar, Anantapur.
           </div>
           <div style={{ display: 'flex', gap: 16 }}>
-            <Link to="/privacy" style={{ color: 'var(--dark-text-muted)' }}>Privacy Policy</Link>
-            <Link to="/terms" style={{ color: 'var(--dark-text-muted)' }}>Terms of Care</Link>
+            <Link to="/#hero" style={{ color: 'var(--dark-text-muted)' }}>Privacy Policy</Link>
+            <Link to="/#hero" style={{ color: 'var(--dark-text-muted)' }}>Terms of Care</Link>
           </div>
         </div>
       </div>
