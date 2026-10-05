@@ -17,8 +17,8 @@ export function SpecialityPage() {
   return (
     <>
       <Helmet>
-        <title>{spec.name} | {siteConfig.name}</title>
-        <meta name="description" content={`${spec.name} at ${siteConfig.name}, Sai Nagar, Anantapur. ${spec.shortDesc}`} />
+        <title>{spec.name} in Anantapur | {siteConfig.name}</title>
+        <meta name="description" content={`Consult expert specialists for ${spec.name} at ${siteConfig.name}, Sai Nagar, Anantapur. ${spec.shortDesc}`} />
         <link rel="canonical" href={`${siteConfig.seo.siteUrl}/specialities/${spec.slug}`} />
       </Helmet>
 

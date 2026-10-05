@@ -83,12 +83,10 @@ export interface HospitalConfig {
 export const siteConfig: HospitalConfig = {
   name: 'Dr. YSR Memorial Hospital',
   legalName: 'Dr. YSR Memorial Multispeciality Hospital',
-  tagline: 'Compassionate Care. Advanced Treatment. Better Health.',
+  tagline: 'Multispeciality Hospital in Anantapur',
   subTagline: 'Comprehensive Healthcare. Compassionate Service. Better Outcomes.',
-  description:
-    'Dr. YSR Memorial Hospital is a trusted multispeciality healthcare destination in Sai Nagar, Anantapur, providing comprehensive medical, surgical, diagnostic and 24/7 emergency care for patients and families.',
-  shortDescription:
-    'Dr. YSR Memorial Hospital is a trusted multispeciality healthcare destination in Sai Nagar, Anantapur, providing comprehensive medical, surgical, diagnostic and 24/7 emergency care for patients and families.',
+  description: 'Dr. YSR Memorial Hospital is a premier multispeciality hospital in Sai Nagar, Anantapur offering 24/7 emergency care, orthopaedics, joint replacement, diabetology, and maternity.',
+  shortDescription: 'Dr. YSR Memorial Hospital in Sai Nagar, Anantapur offers 24/7 emergency care, orthopaedics, joint replacement, diabetology, and maternity care. Book OPD today.',
   heroHeadline: 'Compassionate Care. Advanced Treatment. Better Health.',
   heroSubheadline:
     'A trusted multispeciality healthcare destination in Sai Nagar, Anantapur, providing comprehensive medical, surgical, diagnostic and emergency care for patients and families.',

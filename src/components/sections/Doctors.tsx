@@ -148,6 +148,10 @@ export function Doctors() {
                   <img
                     src={doctor.image}
                     alt={doctor.name}
+                    width={380}
+                    height={240}
+                    loading="lazy"
+                    decoding="async"
                     style={{
                       width: '100%',
                       height: '100%',

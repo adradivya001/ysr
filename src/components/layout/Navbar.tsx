@@ -99,6 +99,8 @@ export function Navbar() {
               <img
                 src="/assets/ysr_logo.png"
                 alt={siteConfig.name}
+                width={200}
+                height={58}
                 style={{
                   height: 58,
                   width: 'auto',
@@ -225,6 +227,8 @@ export function Navbar() {
                   <img
                     src="/assets/ysr_logo.png"
                     alt={siteConfig.name}
+                    width={200}
+                    height={48}
                     style={{
                       height: 48,
                       width: 'auto',

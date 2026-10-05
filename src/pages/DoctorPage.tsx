@@ -14,7 +14,7 @@ export function DoctorPage() {
   return (
     <>
       <Helmet>
-        <title>{doctor.name} — {doctor.title} | {siteConfig.name}</title>
+        <title>{`${doctor.name} – ${doctor.title} | ${siteConfig.name}`}</title>
         <meta name="description" content={`${doctor.name}, ${doctor.title} at ${siteConfig.name}, Sai Nagar, Anantapur. ${doctor.qualifications}. Experience: ${doctor.experience}.`} />
         <link rel="canonical" href={`${siteConfig.seo.siteUrl}/doctors/${doctor.slug}`} />
         <script type="application/ld+json">{JSON.stringify({
@@ -66,6 +66,10 @@ export function DoctorPage() {
               <img
                 src={doctor.image}
                 alt={doctor.name}
+                width={240}
+                height={240}
+                loading="lazy"
+                decoding="async"
                 style={{
                   width: 240, height: 240, borderRadius: '20px', objectFit: 'cover',
                   boxShadow: '0 12px 28px rgba(0,0,0,0.1)', marginBottom: '1.25rem',

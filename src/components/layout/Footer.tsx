@@ -39,6 +39,10 @@ export function Footer() {
               <img
                 src="/assets/ysr_logo.png"
                 alt={siteConfig.name}
+                width={200}
+                height={52}
+                loading="lazy"
+                decoding="async"
                 style={{
                   height: 52,
                   width: 'auto',
